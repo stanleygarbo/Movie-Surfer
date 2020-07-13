@@ -41,7 +41,7 @@ const Nav = ({windowDimensions}) => {
                 <AnimatePresence>
                     {openSearchBar && <SearchField setOpenSearchBar={setOpenSearchBar} />}
                 </AnimatePresence>
-                <button className='search-btn material-icons' onClick={()=>setOpenSearchBar(!openSearchBar)}>
+                <button className='search-btn material-icons' style={{right:windowDimensions.x < 700 && '55px'}} onClick={()=>setOpenSearchBar(!openSearchBar)}>
                     search
                 </button>
 
@@ -87,8 +87,8 @@ const Nav = ({windowDimensions}) => {
 const Links =({toggleMenu})=>
     <ul>
         <li><a onClick={toggleMenu} target='blank' href='https://github.com/stanleygarbo/Movie-Explorer'>GitHub</a></li>
-        <li><a onClick={toggleMenu} target='blank' href='https://github.com/stanleygarbo/Movie-Explorer'>Login</a></li>
-        <li><a onClick={toggleMenu} target='blank' href='https://github.com/stanleygarbo/Movie-Explorer'>Links</a></li>
+        <li><a onClick={toggleMenu} target='blank' href='mailto:stanleygarbo@gmail.com'>Contact</a></li>
+        <li><a onClick={toggleMenu} target='blank' href='https://stanleygarbo.netlify.com'>About</a></li>
     </ul>
 
 

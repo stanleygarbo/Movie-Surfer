@@ -35,6 +35,7 @@ const LandingPage = ({fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovi
     }, [fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovies,fetchTopRatedMovies]);
 
     return (
+        
             <motion.div className='landing-page'
                 variants={landingPageVariants}
                 initial='hidden'
