@@ -1,4 +1,4 @@
-import {FETCH_DETAILS} from '../actions/types'
+import {FETCH_MOVIE_DETAILS} from '../actions/types'
 
 const initState={
     item:{}
@@ -6,7 +6,7 @@ const initState={
 
 export default (state=initState,action) => {
     switch(action.type){
-        case FETCH_DETAILS:
+        case FETCH_MOVIE_DETAILS:
             return {
                 item: action.payload
             }

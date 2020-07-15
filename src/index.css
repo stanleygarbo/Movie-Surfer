@@ -1,10 +1,10 @@
 :root{
-  --primary-color:rgb(0, 7, 29);
-  --primary-color-light:rgb(15, 22, 44);
-  --primary-color-translucent: rgba(0, 7, 29, 0.8);
-  --primary-color-translucent-two: rgba(0, 7, 29, 0.4);
-  --color-accent:#ffbf00;
-  --color-accent-two:#2e4bfa;
+  --primary-color:#111;
+  --primary-color-light:#222;
+  --primary-color-translucent: rgba(17, 17, 17, 0.8);
+  --primary-color-translucent-two: rgba(17, 17, 17, 0.6);
+  --color-accent:red;
+  --color-accent-two:rgba(51,51,51,0.5);
 }
 
 
@@ -101,7 +101,7 @@ nav ul li a::before{
   height:96%;
   top:0;
   left:-200%;
-  border-bottom: 1px solid rgb(46, 75, 250);
+  border-bottom: 1px solid var(--color-accent);
   transition: .5s ease;
 }
 
@@ -109,7 +109,7 @@ nav ul li a:hover::before{
   left:0;
 }
 nav ul li a:hover{
-  color:#2e4bfa;
+  color:var(--color-accent);
 }
 .menu{
   height: 100vh;
@@ -119,7 +119,7 @@ nav ul li a:hover{
   top:0;
   position: absolute;
   right: -100%;
-  background: rgb(10, 17, 39);
+  background: var(--primary-color-light);
   transition: all 0.35s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
 .menu ul{
@@ -196,25 +196,22 @@ nav ul li a:hover{
 .search-field form button{
   outline: none;
   border: none;
-  background: var(--color-accent-two);
+  background: var(--color-accent);
   border-radius: 100px;
   font-weight: 400;
   cursor: pointer;
   font-size: 26px;
   position: absolute;
-  color:var(--color-accent);
+  color:#fff;
   right:0;
   top:0;
   height: 50px;
   width:50px;
 }
 
-.trending-container{
+.banner-container{
   width:100%;
-  height:760px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height:460px;
   margin: 0 auto;
   background-size: cover;
   background-position: center;
@@ -222,7 +219,7 @@ nav ul li a:hover{
   position: relative;
 }
 
-.trending-container::before{
+.banner-container::before{
   content:'';
   position: absolute;
   width: 100%;
@@ -233,14 +230,13 @@ nav ul li a:hover{
   background-image: linear-gradient(360deg,var(--primary-color),var(--primary-color-translucent),transparent);
   left:0;
 }
-.trending{
+.banner{
   height: 100%;
   width: 70%;
   position: relative;
   color:#fff;
 }
-.trending .trending-info{
-  position: absolute;
+.banner .banner-info{
   z-index: 4;
   padding: 0px 10%;
   height: 100%;
@@ -248,18 +244,20 @@ nav ul li a:hover{
   flex-direction: column;
   justify-content: center;
   max-width: 360px;
+  
 }
-.trending .trending-info h{
+.banner .banner-info h{
   font-size: 3rem;
 }
-.trending .trending-info h2{
+.banner .banner-info h2{
   font-size: .8rem;
+  font-weight: normal;
 }
-.trending .trending-info p{
+.banner .banner-info p{
   font-size: 20px;
   padding-top: 20px;
 }
-.trending .trending-info button{
+.banner .banner-info button{
   padding: 10px 20px;
   width: 100px;
   background-color: var(--color-accent-two);
@@ -268,47 +266,11 @@ nav ul li a:hover{
   outline: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin:10px 0px;
 }
-.other-trending-wrapper{
-  position: relative;
-  width: 180px;
-  height:60%;
-  z-index: 5;
-}
-.other-trending-wrapper h1{
-  position: absolute;
-  z-index: 3;
-  top: -45px;
-  margin-left: 40px;
-  color:#fff;
-  font-size: 20px;
-  font-weight: 500;
-}
-.other-trending-container{
-  overflow-y: scroll;
-  overflow-x: hidden;
-  position: relative;
-  width:100%;
-  height:100%;
-}
-#trend::-webkit-scrollbar{
-  width:4px;
-}
-#trend::-webkit-scrollbar-thumb{
-  background: linear-gradient(45deg,var(--color-accent-two),var(--color-accent));
-}
-.other-trending{
-  width:150px;
-  height:210px;
-  background-size: 100% 100%;
-  margin: 0 auto;
-  margin-top: 25px;
-  cursor: pointer;
-  transition: .5s;
-}
-.other-trending:hover{
-  transform: scale(1.1);
+.banner .banner-info button:hover{
+  background-color: #e6e6e6;
+  color: #000;
 }
 .movies-container{
   width:100%;

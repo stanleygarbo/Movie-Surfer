@@ -2,7 +2,7 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import {useHistory} from 'react-router-dom'
 
-const MoviesRow = ({category,movies}) => {
+const MoviesRow = ({category,movies,type}) => {
     const history=useHistory()
 
     return (
@@ -15,7 +15,7 @@ const MoviesRow = ({category,movies}) => {
             direction={'horizontal'}
             >
                 {movies.length !== 0 && movies.results.map(movie=>
-                    <SwiperSlide key={movie.id} className='movie' onClick={()=>history.push(`preview/${movie.id}`)}
+                    <SwiperSlide key={movie.id} className='movie' onClick={()=>history.push(`preview/${movie.id}/${type}`)}
                         style={{
                             backgroundImage:`url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`,
                             backgroundSize: '100% 100%'

@@ -33,7 +33,7 @@ const Nav = ({windowDimensions}) => {
         <div className='nav-container'>
             <nav 
                 style={{
-                    backgroundColor:showNavBg && 'rgb(0, 7, 29)',
+                    backgroundColor:showNavBg && '#111',
                     boxShadow:showNavBg && '0px 0px 10px rgba(0,0,0,0.5)'
                 }}
             >

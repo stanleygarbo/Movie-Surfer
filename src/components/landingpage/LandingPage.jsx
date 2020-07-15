@@ -1,12 +1,15 @@
 import React,{useEffect} from 'react'
 import {connect} from 'react-redux'
-import Trending from './Trending'
+import {bindActionCreators} from 'redux'
 import {motion} from 'framer-motion'
 import MoviesRow from './MoviesRow'
+import fetchNetflixOriginals from '../../actions/netflixOriginalsAction'
+import fetchTrending from '../../actions/trendingAction'
 import fetchUpcomingMovies from '../../actions/upcomingMoviesAction'
 import fetchPopularMovies from '../../actions/popularMoviesAction'
 import fetchNowPlayingMovies from '../../actions/nowPlayingMoviesAction'
 import fetchTopRatedMovies from '../../actions/topRatedMoviesAction'
+import Banner from './Banner'
 
 const landingPageVariants={
     hidden:{
@@ -25,14 +28,17 @@ const landingPageVariants={
 
 }
 
-const LandingPage = ({fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovies,fetchTopRatedMovies,movies}) => {
+const LandingPage = ({movies,actionCreators}) => {
 
     useEffect(() => {
-        fetchUpcomingMovies()
-        fetchPopularMovies()
-        fetchNowPlayingMovies()
-        fetchTopRatedMovies()
-    }, [fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovies,fetchTopRatedMovies]);
+        console.log('exe')
+        actionCreators.fetchNetflixOriginals()
+        actionCreators.fetchTrending()
+        actionCreators.fetchUpcomingMovies()
+        actionCreators.fetchPopularMovies()
+        actionCreators.fetchNowPlayingMovies()
+        actionCreators.fetchTopRatedMovies()
+    }, [actionCreators]);
 
     return (
         
@@ -42,11 +48,13 @@ const LandingPage = ({fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovi
                 animate='visible'
                 exit={{x:'-100%'}}
             >
-                <Trending />
-                <MoviesRow movies={movies?.upcoming} category='Upcoming' />
-                <MoviesRow movies={movies?.popular} category='Popular' />
-                <MoviesRow movies={movies?.nowPlaying} category='Now Playing' />
-                <MoviesRow movies={movies?.topRated} category='Top Rated' />
+                <Banner />
+                <MoviesRow movies={movies?.netflixOriginals} category='Netflix Originals' type='tv' />
+                <MoviesRow movies={movies?.trending} category='Trending' type='movie' />
+                <MoviesRow movies={movies?.upcoming} category='Upcoming' type='movie' />
+                <MoviesRow movies={movies?.popular} category='Popular' type='movie' />
+                <MoviesRow movies={movies?.nowPlaying} category='Now Playing' type='movie' />
+                <MoviesRow movies={movies?.topRated} category='Top Rated' type='movie' />
             </motion.div>
     )
 }
@@ -54,6 +62,8 @@ const LandingPage = ({fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovi
 const mapStateToProps=(state)=>{
     return {
         movies: {
+            netflixOriginals: state.netflixOriginals.items,
+            trending: state.trending.items,
             upcoming: state.upcoming.items,
             popular: state.popular.items,
             nowPlaying: state.nowPlaying.items,
@@ -62,4 +72,20 @@ const mapStateToProps=(state)=>{
     }
 }
 
-export default connect(mapStateToProps,{fetchUpcomingMovies,fetchPopularMovies,fetchNowPlayingMovies,fetchTopRatedMovies})(LandingPage)
+function mapDispatchToProps(dispatch) {
+    const actionCreators={
+        ...bindActionCreators({ 
+            fetchNetflixOriginals,
+            fetchTrending,
+            fetchUpcomingMovies,
+            fetchPopularMovies,
+            fetchNowPlayingMovies,
+            fetchTopRatedMovies 
+        },dispatch)
+    }
+    return {
+        actionCreators
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(LandingPage)

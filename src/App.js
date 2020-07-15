@@ -28,7 +28,7 @@ function App() {
           <Switch location={location} key={location.key}>
               <Route exact path='/' component={LandingPage} />
               <Route exact path='/search/:query' component={Results} />
-              <Route exact path='/preview/:id' component={Preview} />
+              <Route exact path='/preview/:id/:type' component={Preview} />
           </Switch>
         </AnimatePresence>
       </div>

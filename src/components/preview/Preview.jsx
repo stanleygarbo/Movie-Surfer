@@ -1,7 +1,9 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import {connect} from 'react-redux'
-import fetchDetails from '../../actions/detailsAction'
+import {bindActionCreators} from 'redux'
+import fetchMovieDetails from '../../actions/movieDetailsAction'
 import fetchSimilarMovies from '../../actions/similarMoviesAction'
+import fetchTvShowDetails from '../../actions/tvShowDetailsAction'
 import {useRouteMatch} from 'react-router-dom'
 import {motion} from 'framer-motion'
 import './previewStyle.css'
@@ -22,16 +24,25 @@ const previewVariants={
     }
 }
 
-const Preview = ({movie,fetchDetails,fetchSimilarMovies}) => {
+const Preview = ({movie,tvShow,actions}) => {
+    const [toBePreviewed,setToBePreviewed] = useState()
     const match=useRouteMatch()
 
     useEffect(() => {
         window.scrollTo(0,0)
-        console.log(window.scrollY)
-        fetchDetails(match.params.id)
-        fetchSimilarMovies(match.params.id)
-    }, [fetchDetails,fetchSimilarMovies,match.params.id])
+        if(match.params.type === 'movie'){
+            actions.fetchMovieDetails(match.params.id)
+            actions.fetchSimilarMovies(match.params.id)
+        }
+        else{
+            actions.fetchTvShowDetails(match.params.id)
+        }
+    }, [actions,match.params])
 
+    useEffect(()=>{
+        console.log('mortf')
+        setToBePreviewed(match.params.type === 'movie' ? movie : tvShow )
+    },[movie,tvShow,match.params.type])
 
     return (
         <motion.div className='preview'
@@ -40,20 +51,19 @@ const Preview = ({movie,fetchDetails,fetchSimilarMovies}) => {
         animate='visible'
         exit='exit'
         >   
-        {console.log(movie.details)}
             <div className='preview-banner'
                 style={{
-                    backgroundImage:`url(https://image.tmdb.org/t/p/w1280/${movie?.details.backdrop_path || movie?.details.poster_path})`
+                    backgroundImage:`url(https://image.tmdb.org/t/p/w1280/${toBePreviewed?.details?.backdrop_path || toBePreviewed?.details?.poster_path})`
                 }}
             >
                 {
-                    movie.similar.results?.length && <SimilarMovies similarMovies={movie.similar?.results} />
+                    toBePreviewed?.similarMovies?.results?.length && <SimilarMovies similarMovies={toBePreviewed?.similarMovies?.results} />
                 }
             </div>
-            <h1 className='preview-title'>{movie?.details.original_title || movie?.details.title || movie?.details.name}</h1>
-            <Genres genres={movie.details.genres} />
-            <Ratings ratings={movie.details.vote_average} />
-            <h1 className='preview-description'>{movie?.details.overview}</h1>
+            <h1 className='preview-title'>{toBePreviewed?.details?.original_title || toBePreviewed?.details?.title || toBePreviewed?.details?.name}</h1>
+            <Genres genres={toBePreviewed?.details?.genres} />
+            <Ratings ratings={toBePreviewed?.details?.vote_average} />
+            <h1 className='preview-description'>{toBePreviewed?.details?.overview}</h1>
         </motion.div>
     )
 }
@@ -61,10 +71,27 @@ const Preview = ({movie,fetchDetails,fetchSimilarMovies}) => {
 const mapStateToProps=(state)=>{
     return {
         movie:{
-            details:state.details.item,
-            similar:state.similar.items
+            details:state.movieDetails.item,
+            similar:state.similarMovies.items
+        },
+        tvShow:{
+            details:state.tvShowDetails.item,
+            // similarTvShow:state.similarMovies.items
         }
     }
 }
 
-export default connect(mapStateToProps,{fetchDetails,fetchSimilarMovies})(Preview)
+const mapDispatchToProps=(dispatch)=>{
+    const actions = {
+        ...bindActionCreators({
+            fetchMovieDetails,
+            fetchSimilarMovies,
+            fetchTvShowDetails
+        },dispatch)
+    }
+    return{
+        actions
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Preview)
