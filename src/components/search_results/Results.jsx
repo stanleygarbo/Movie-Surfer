@@ -33,25 +33,25 @@ const Results = ({searchResults,fetchSearch}) => {
     }, [fetchSearch,match.params.query])
 
     return (
-            <motion.div className='search-results'
-                variants={searchResultsVariants}
-                initial='hidden'
-                animate='visible'
-                exit='exit'
-            >
-                <p>Showing Results for {match.params.query}</p>
-                <div className='results-container'>
-                    {searchResults.results && searchResults.results.map(result=>
-                        <div className='result' key={result.id} onClick={()=>history.push(`/preview/${result.id}`)}
-                            style={{
-                                backgroundImage:`url(https://image.tmdb.org/t/p/w500/${result.poster_path})`
-                            }}
-                        >
-                            <pre>{result.poster_path ? null:'No Image' }</pre>
-                        </div>
-                    )}
-                </div>
-            </motion.div>
+        <motion.div className='search-results'
+            variants={searchResultsVariants}
+            initial='hidden'
+            animate='visible'
+            exit='exit'
+        >
+            <p>Showing Results for {match.params.query}</p>
+            <div className='results-container'>
+                {searchResults.results && searchResults.results.map(result=>
+                    <div className='result' key={result.id} onClick={()=>history.push(`/preview/${result.id}/movie`)}
+                        style={{
+                            backgroundImage:`url(https://image.tmdb.org/t/p/w500/${result.poster_path})`
+                        }}
+                    >
+                        <pre>{result.poster_path ? null:'No Image' }</pre>
+                    </div>
+                )}
+            </div>
+        </motion.div>
     )
 }
 

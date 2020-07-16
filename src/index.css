@@ -63,9 +63,9 @@ nav .search-btn{
   width: 40px;
   height:40px;
   cursor: pointer;
-  transition: .5s;
   color: var(--color-accent);
   font-size: 34px;
+  outline: none;
 }
 nav .search-btn:hover{
   transform: scale(1.1);
@@ -226,13 +226,12 @@ nav ul li a:hover{
   height:50%;
   bottom: 0;
   z-index: 0;
-  /* background-image: radial-gradient(var(--primary-color-translucent-two),var(--primary-color-translucent),var(--primary-color)); */
   background-image: linear-gradient(360deg,var(--primary-color),var(--primary-color-translucent),transparent);
   left:0;
 }
 .banner{
   height: 100%;
-  width: 70%;
+  width: 100%;
   position: relative;
   color:#fff;
 }
@@ -244,7 +243,6 @@ nav ul li a:hover{
   flex-direction: column;
   justify-content: center;
   max-width: 360px;
-  
 }
 .banner .banner-info h{
   font-size: 3rem;
@@ -258,9 +256,10 @@ nav ul li a:hover{
   padding-top: 20px;
 }
 .banner .banner-info button{
+  transition: .5s;
   padding: 10px 20px;
   width: 100px;
-  background-color: var(--color-accent-two);
+  background-color: var(--primary-color-translucent);
   color:#fff;
   border:none;
   outline: none;
@@ -295,6 +294,23 @@ nav ul li a:hover{
   transition: .5s;
   margin-top: 10px;
 }
+.contact__btn{
+  padding: 10px 20px;
+  margin: 60px auto;
+  width: 200px;
+  box-shadow: 0 10px 6px -6px rgba(255, 0, 0, 0.507);
+  text-align: center;
+  border-radius: 100px;
+  transition: .5s;
+  font-size: 12px;
+}
+.contact__btn a{
+  color: red;
+}
+.contact__btn:hover{
+  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.507);
+}
+
 .movie:nth-child(1){
   margin-left: 18px;
 }
@@ -314,7 +330,7 @@ nav ul li a:hover{
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 10px;
   justify-content: center;
-  width: 800px;
+  max-width: 800px;
   margin: 0 auto;
 }
 .result{
@@ -343,29 +359,8 @@ nav ul li a:hover{
   }
 }
 
-
-@media only screen and (max-width:1230px){
-  nav{
-    width:100%;
-  }
-  .trending-container{
-    width: 100%;
-  }
-  .movies-container{
-    width: 100%;
-  }
-}
-@media only screen and (max-width:800px){
-  .results-container{
-    width:95%;
-  }
-}
 @media only screen and (max-width:637px){
-  .other-trending-wrapper{
-    width:30%;
-    height: 450px;
-  }
-  .other-trending, .movie{
+  .movie{
     width:100px;
     height: 130px;
   }
@@ -377,17 +372,6 @@ nav ul li a:hover{
 @media only screen and (max-width:586px){
   .search-field{
     width:96%;
-  }
-  .other-trending-wrapper h1{
-    margin-left: 15%;
-    font-size: 15px;
-    top: -30px;
-  }
-  .trending .trending-info{
-    padding: 0px 20px;
-  }
-  .trending .trending-info p{
-    font-size: 16px;
   }
   .results-container{
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));

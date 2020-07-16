@@ -1,15 +1,14 @@
-import { FETCH_SIMILAR_MOVIES } from '../actions/types'
+import {FETCH_DETAILS} from '../actions/types'
 
 const initState = {
-    items:[]
+    item:{}
 }
 
 export default (state=initState,action)=>{
     switch(action.type){
-        case FETCH_SIMILAR_MOVIES:
+        case FETCH_DETAILS:
             return {
-                ...state,
-                items:action.payload
+                item:action.payload
             }
         default:
             return state

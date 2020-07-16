@@ -6,9 +6,8 @@ import topRatedMoviesReducer from './topRatedMoviesReducer'
 import nowPlayingMoviesReducer from './nowPlayingMoviesReducer'
 import trendingReducer from './trendingReducer';
 import searchReducer from './searchReducer'
-import movieDetailsReducer from './movieDetailsReducer'
-import tvShowDetailsReducer from './tvShowDetailsReducer'
-import similarMoviesReducer from './similarMoviesReducer'
+import detailsReducer from './detailsReducer'
+import similarReducer from './similarReducer'
 
 export default combineReducers({
     netflixOriginals: netflixOriginalsReducer,
@@ -18,7 +17,6 @@ export default combineReducers({
     nowPlaying: nowPlayingMoviesReducer,
     trending: trendingReducer,
     searchResults : searchReducer,
-    movieDetails: movieDetailsReducer,
-    tvShowDetails: tvShowDetailsReducer,
-    similarMovies: similarMoviesReducer
+    details: detailsReducer,
+    similar:similarReducer
 });

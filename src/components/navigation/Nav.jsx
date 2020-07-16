@@ -62,21 +62,24 @@ const Nav = ({windowDimensions}) => {
                 :
                 <div className='hamburger-container' onClick={toggleMenu}>
                     <div className='hamburger-lines' 
-                    style={{transform:openMenu && 'translateY(10px) rotate(492deg)',
-                    width:'34px'
-                    
-                    }}></div>
+                    style={{
+                        transform:openMenu && 'translateY(10px) rotate(492deg)',
+                        width:'34px'
+                    }}>
+                    </div>
                     <div className='hamburger-lines' 
-                    style={{transform:openMenu && 'rotate(905deg)',
-                    opacity: openMenu && '0',
-                    width:'25px'
-                    
-                    }}></div>
+                    style={{
+                        transform:openMenu && 'rotate(905deg)',
+                        opacity: openMenu && '0',
+                        width:'25px'
+                    }}>
+                    </div>
                     <div className='hamburger-lines' 
-                    style={{transform:openMenu && 'translateY(-10px) rotate(585deg)',
-                    width:openMenu?'34px':'16px'
-                    
-                    }}></div>
+                    style={{
+                        transform:openMenu && 'translateY(-10px) rotate(585deg)',
+                        width:openMenu?'34px':'16px'
+                    }}>
+                    </div>
                 </div>
                 }
             </nav>

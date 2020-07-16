@@ -31,7 +31,6 @@ const landingPageVariants={
 const LandingPage = ({movies,actionCreators}) => {
 
     useEffect(() => {
-        console.log('exe')
         actionCreators.fetchNetflixOriginals()
         actionCreators.fetchTrending()
         actionCreators.fetchUpcomingMovies()
@@ -41,7 +40,6 @@ const LandingPage = ({movies,actionCreators}) => {
     }, [actionCreators]);
 
     return (
-        
             <motion.div className='landing-page'
                 variants={landingPageVariants}
                 initial='hidden'
@@ -55,6 +53,7 @@ const LandingPage = ({movies,actionCreators}) => {
                 <MoviesRow movies={movies?.popular} category='Popular' type='movie' />
                 <MoviesRow movies={movies?.nowPlaying} category='Now Playing' type='movie' />
                 <MoviesRow movies={movies?.topRated} category='Top Rated' type='movie' />
+                <div className='contact__btn'><a href='https://stanleygarbo.netlify.app'>MADE BY STANLEY GARBO</a></div>
             </motion.div>
     )
 }

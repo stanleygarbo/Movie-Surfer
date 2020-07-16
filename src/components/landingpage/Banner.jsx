@@ -2,14 +2,11 @@ import React,{useState,useEffect} from 'react'
 import {connect} from 'react-redux'
 import fetchNetflixOriginals from '../../actions/netflixOriginalsAction'
 import {useHistory} from 'react-router-dom' 
+import {truncateString} from '../../scripts/usefulFunctions'
 
 const Trending = ({fetchNetflixOriginals,netflixOriginals}) => {
     const history=useHistory()
     const [banner,setBanner] = useState()
-
-    function truncateString(str, num) {
-        return str && str.slice(0, num) + "...";
-    }
     
     useEffect(()=>{
         fetchNetflixOriginals()
@@ -26,7 +23,7 @@ const Trending = ({fetchNetflixOriginals,netflixOriginals}) => {
                 {netflixOriginals.results && 
                     <div className='banner-info'>
                         <h1>{netflixOriginals.results[banner]?.name || netflixOriginals.results[banner]?.title}</h1>
-                        <button onClick={()=>history.push(`preview/${netflixOriginals.results[banner].id}`)}>View</button>
+                        <button onClick={()=>history.push(`preview/${netflixOriginals.results[banner].id}/tv`)}>View</button>
                         <h2>{truncateString(netflixOriginals.results[banner]?.overview,160)}</h2>
                         <pre>{netflixOriginals.results[banner]?.first_air_date}</pre>
                     </div>
