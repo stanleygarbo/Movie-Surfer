@@ -3,13 +3,12 @@ import {Swiper,SwiperSlide} from 'swiper/react'
 import {useHistory} from 'react-router-dom'
 import {truncateString} from '../../scripts/usefulFunctions'
 
-const Similar = ({similars}) => {
+const Similar = ({similars,type}) => {
     const history = useHistory()
-
 
     return (
         <div className='preview__similar__container'>
-            <h1 className='preview__similar__container__name'>Similar Movies</h1>
+            <h1 className='preview__similar__container__name'>Similar</h1>
             <Swiper className='preview__similar__wrapper' 
             spaceBetween={20}
             freeMode= {true}
@@ -18,7 +17,7 @@ const Similar = ({similars}) => {
             >
                 {similars?.map(similar=>
                     <SwiperSlide className='preview__similar' key={similar.id}
-                    onClick={()=>history.push(`/preview/${similar.id}`)} 
+                    onClick={()=>history.push(`/preview/${similar.id}/${type}`)} 
                     >
                         <div className='preview__similar__image' 
                         style={{

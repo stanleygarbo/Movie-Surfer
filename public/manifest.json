@@ -1,7 +1,13 @@
 {
   "short_name": "Movie Surfer",
   "name": "Movie Surfer",
-  
+  "icons":[
+    {
+      "128": "logo.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#111",

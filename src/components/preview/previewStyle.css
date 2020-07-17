@@ -39,7 +39,7 @@
     left:0;
     flex-direction: column;
 }
-.preview__simila__container__name{
+.preview__similar__container__name{
     color:#fff;
     margin-left: 18px;
     font-size: 20px;
@@ -69,7 +69,7 @@
 }
 .genres{
     width: 100%;
-    margin-left: 0px;
+    cursor: grab;
 }
 .genre{
     width: fit-content;
@@ -103,6 +103,6 @@
     height: 30px;
 }
 .vote__icon:hover,.add__icon:hover{
-    color: var(--color-accent-two);
+    color: var(--color-accent);
     cursor: pointer;
 }

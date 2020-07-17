@@ -45,7 +45,11 @@ const Preview = ({toBePreviewed,actions}) => {
                 }}
             >
                 {
-                    toBePreviewed?.similar?.results?.length && <Similar similars={toBePreviewed?.similar?.results} />
+                    toBePreviewed?.similar?.results?.length !==0 && 
+                    <Similar 
+                        similars={toBePreviewed?.similar?.results} 
+                        type={match.params.type}
+                    />
                 }
             </div>
             <h1 className='preview-title'>{toBePreviewed?.details?.original_title || toBePreviewed?.details?.title || toBePreviewed?.details?.name}</h1>
